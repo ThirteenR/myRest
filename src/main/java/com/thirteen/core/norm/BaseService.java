@@ -1,4 +1,4 @@
-package com.thirteen.core.norm.service;
+package com.thirteen.core.norm;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.thirteen.core.norm.dao;
+package com.thirteen.core.norm;
 
 import java.util.List;
 

@@ -1,6 +1,9 @@
 package com.thirteen.component.first.service;
 
 import com.thirteen.component.first.dao.FirstDao;
+import com.thirteen.component.first.entity.UserInfo;
+import com.thirteen.core.exception.ConstException;
+import com.thirteen.core.response.ResponseEnum;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -12,26 +15,26 @@ import java.util.List;
  * Description:
  **/
 @Service
-public class FirstServiceImpl<UserInfo> implements FirstService<UserInfo> {
+public class FirstServiceImpl<T> implements FirstService<T> {
      @Resource
      FirstDao firstDao;
     @Override
-    public int post(UserInfo u) {
-        return firstDao.post(u);
+    public int post(T t) {
+        return firstDao.post(t);
     }
 
     @Override
-    public List<UserInfo> get(UserInfo u) {
-        return firstDao.get(u);
+    public List<T> get(T t) {
+        return firstDao.get(t);
     }
 
     @Override
-    public int put(UserInfo t) {
+    public int put(T t) {
         return 0;
     }
 
     @Override
-    public int delete(UserInfo t) {
+    public int delete(T t) {
         return 0;
     }
 }

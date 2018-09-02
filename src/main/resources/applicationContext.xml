@@ -5,7 +5,7 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd ">
-	<context:component-scan base-package="com.thirteen.component" />
+	<context:component-scan base-package="com.thirteen.component,com.thirteen.core.aop" />
 	<context:property-placeholder location="classpath:jdbc.properties"/>
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClassName}"/>
@@ -19,6 +19,7 @@
 	</bean>
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath:/com/thirteen/component/*/dao/mapper.xml"/>
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	<!-- 自动扫描mybatis映射 -->

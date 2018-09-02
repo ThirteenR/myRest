@@ -37,8 +37,7 @@
 		</plugin>
 	</plugins>
 	<mappers>
-		<!-- 映射Dao -->
-		<mapper resource="com/thirteen/core/component/first/dao/mapper.xml"/>
+		<!-- spring bean中配置com/thirteen/component/*/dao/mapper.xml -->
 	</mappers>
 
 </configuration>

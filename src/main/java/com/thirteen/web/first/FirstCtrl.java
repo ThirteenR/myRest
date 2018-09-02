@@ -2,10 +2,12 @@ package com.thirteen.web.first;
 
 import com.thirteen.component.first.entity.UserInfo;
 import com.thirteen.component.first.service.FirstService;
+import com.thirteen.core.response.ResponseJson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -22,13 +24,20 @@ public class FirstCtrl {
     @Resource
     FirstService firstService;
     private Logger logger = LoggerFactory.getLogger(FirstCtrl.class);
-    @RequestMapping("/get/{userId}")
-    public List<UserInfo> get(@PathVariable(value = "userId") int userId, UserInfo userInfo){
-        userInfo.setUserId(userId);
-           return firstService.get(userInfo);
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseJson get(UserInfo userInfo){
+           return ResponseJson.success(firstService.get(userInfo));
     }
-    @RequestMapping("/get")
-    public List<UserInfo> get(UserInfo userInfo){
-        return firstService.get(userInfo);
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseJson post(UserInfo userInfo){
+        return ResponseJson.success(firstService.post(userInfo));
+    }
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseJson put(UserInfo userInfo){
+        return ResponseJson.success(firstService.put(userInfo));
+    }
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseJson delete(UserInfo userInfo){
+        return ResponseJson.success(firstService.delete(userInfo));
     }
 }

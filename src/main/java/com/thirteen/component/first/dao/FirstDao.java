@@ -1,6 +1,6 @@
 package com.thirteen.component.first.dao;
 
-import com.thirteen.core.norm.dao.BaseDao;
+import com.thirteen.core.norm.BaseDao;
 
 /**
  * Author: rsq0113

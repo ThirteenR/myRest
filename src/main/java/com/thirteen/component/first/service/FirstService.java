@@ -1,6 +1,6 @@
 package com.thirteen.component.first.service;
 
-import com.thirteen.core.norm.service.BaseService;
+import com.thirteen.core.norm.BaseService;
 
 import java.util.List;
 
