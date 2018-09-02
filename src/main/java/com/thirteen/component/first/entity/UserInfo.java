@@ -1,4 +1,4 @@
-package com.thirteen.core.component.first.entity;
+package com.thirteen.component.first.entity;
 
 /**
  * Author: rsq0113

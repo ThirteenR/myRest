@@ -1,4 +1,4 @@
-package com.thirteen.core.component.first.service;
+package com.thirteen.component.first.service;
 
 import com.thirteen.core.norm.service.BaseService;
 

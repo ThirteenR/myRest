@@ -1,8 +1,7 @@
-package com.thirteen.core.component.first.service;
+package com.thirteen.component.first.service;
 
-import com.thirteen.core.component.first.dao.FirstDao;
+import com.thirteen.component.first.dao.FirstDao;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
 @Service
 public class FirstServiceImpl<UserInfo> implements FirstService<UserInfo> {
      @Resource
-    FirstDao firstDao;
+     FirstDao firstDao;
     @Override
     public int post(UserInfo u) {
         return firstDao.post(u);

@@ -1,4 +1,4 @@
-package com.thirteen.core.component.first.dao;
+package com.thirteen.component.first.dao;
 
 import com.thirteen.core.norm.dao.BaseDao;
 

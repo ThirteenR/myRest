@@ -1,12 +1,11 @@
 package com.thirteen.core.web.first;
 
-import com.thirteen.core.component.first.entity.UserInfo;
-import com.thirteen.core.component.first.service.FirstService;
+import com.thirteen.component.first.entity.UserInfo;
+import com.thirteen.component.first.service.FirstService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
