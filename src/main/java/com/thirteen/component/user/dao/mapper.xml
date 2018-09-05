@@ -35,7 +35,7 @@
     <insert id="post" parameterType="com.thirteen.component.user.entity.UserInfo">
         INSERT INTO user_info (user_Name,passWord,user_Rand)values(#{userName},#{passWord},#{userRand})
     </insert>
-    <update id="updateUser" parameterType="com.thirteen.component.user.entity.UserInfo">
+    <update id="put" parameterType="com.thirteen.component.user.entity.UserInfo">
         UPDATE user_info
         <set>
           <if test="userName != null">

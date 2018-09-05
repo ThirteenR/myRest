@@ -16,11 +16,11 @@ import javax.annotation.Resource;
 @Service
 public class UserServiceImpl<T> extends BaseServiceImpl<T> implements UserService<T> {
      @Resource
-     UserDao firstDao;
+     UserDao userDao;
     @Override
     public int post(T t) {
         UserInfo userInfo = (UserInfo) t;
         userInfo.setPassWord(MD5Encod.getMD5(userInfo.getPassWord()));
-        return firstDao.post(userInfo);
+        return userDao.post(userInfo);
     }
 }
