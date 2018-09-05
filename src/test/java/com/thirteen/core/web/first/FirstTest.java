@@ -1,7 +1,7 @@
 package com.thirteen.core.web.first;
 
-import com.thirteen.component.first.entity.UserInfo;
-import com.thirteen.component.first.service.FirstService;
+import com.thirteen.component.user.entity.UserInfo;
+import com.thirteen.component.user.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -18,7 +18,7 @@ import javax.annotation.Resource;
 @ContextConfiguration("classpath:applicationContext.xml")
 public class FirstTest {
     @Resource
-    FirstService firstService;
+    UserService firstService;
     @Test
     public void get(){
         UserInfo userInfo = new UserInfo();

@@ -6,15 +6,26 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	<!-- 自动扫描且只扫描@Controller -->
-	<mvc:annotation-driven />
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <!--NULL的处理 让其不出现在响应中 或者在类中使用注解 @JsonInclude(JsonInclude.Include.NON_NULL)-->
+                <property name="objectMapper">
+                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                        <property name="serializationInclusion" value="NON_NULL"/>
+                    </bean>
+                </property>
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 	<context:component-scan base-package="com.thirteen.web"/>
 	<aop:aspectj-autoproxy />
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/" />
-		<property name="suffix" value=".jsp" />
-		<property name="order" value="1" />
-	</bean>
+
 	<!-- 定义文件上传解析器 -->
 
 	<bean id="multipartResolver"
@@ -24,14 +35,25 @@
 	<!-- 设定文件上传的最大值5MB，5*1024*1024 -->
 		<property name="maxUploadSize" value="5242880"></property>
 	</bean>
+	<!-- API 接口跨域配置 -->
+	<mvc:cors>
+		<mvc:mapping path="/**"
+					 allowed-origins="http://localhost:8081"
+					 allowed-methods="POST, GET, OPTIONS, DELETE, PUT"
+					 allowed-headers="Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With,x-token"
+					 max-age = "-1" />
+	</mvc:cors>
 	<!-- 拦截器 -->
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<!-- 匹配的是url路径， 如果不配置或/**,将拦截所有的Controller -->
-			<mvc:mapping path="/**" />
-			<!-- 拦截器类 -->
-			<bean class="com.thirteen.core.interceptor.CORSInterceptor"/>
-		</mvc:interceptor>
-		<!-- 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法 -->
-	</mvc:interceptors>
+    <!--<mvc:interceptors>
+    <mvc:interceptor>
+            &lt;!&ndash; 匹配的是url路径， 如果不配置或/**,将拦截所有的Controller &ndash;&gt;
+            <mvc:mapping path="/**" />
+            &lt;!&ndash; 拦截器类 &ndash;&gt;
+            <bean class="com.thirteen.core.interceptor.CORSInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**" />
+            <bean class="com.thirteen.core.interceptor.UValidationInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>-->
 </beans>

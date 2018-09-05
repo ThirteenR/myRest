@@ -17,10 +17,10 @@ import java.util.List;
  * Description:
  **/
 public class CORSInterceptor implements HandlerInterceptor {
-    private static final String ALLOW_ORIGIN = "*";
+    private static final String ALLOW_ORIGIN = "http://localhost:8081";
     private static final String ALLOW_METHODS = "GET,POST,PUT,DELETE,OPTIONS";
     private static final String ALLOW_CREDENTIALS = "true";
-    private static final String ALLOW_HEADERS = "Content-Type,X-Token";
+    private static final String ALLOW_HEADERS = "Content-Type,x-token,x-requested-with  ";
     private static final String EXPOSE_HEADERS = "";
     private Logger logger = LoggerFactory.getLogger(CORSInterceptor.class);
     @Override
@@ -32,6 +32,7 @@ public class CORSInterceptor implements HandlerInterceptor {
         logger.debug("CORSInterceptor:preHandle");
         String currentOrigin = request.getHeader("Origin");
         logger.debug("currentOrigin : " + currentOrigin);
+        logger.debug("METHOD : " + request.getMethod());
         if (StringUtil.isNotEmpty(ALLOW_ORIGIN)) {
             List<String> allowOriginList = Arrays
                     .asList(ALLOW_ORIGIN.split(","));
@@ -54,6 +55,7 @@ public class CORSInterceptor implements HandlerInterceptor {
         if (StringUtil.isNotEmpty(EXPOSE_HEADERS)) {
             response.setHeader("Access-Control-Expose-Headers", EXPOSE_HEADERS);
         }
+        response.setHeader("Access-Control-Max-Age","-1");
         return true;
     }
 

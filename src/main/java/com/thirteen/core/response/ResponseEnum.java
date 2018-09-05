@@ -1,7 +1,8 @@
 package com.thirteen.core.response;
 
 public enum ResponseEnum {
-	
+	LOGIN_ERROR(404,"登陆失败！"),
+	NOT_LOGIN(404,"未登录!"),
 	SUCCESS(200,"成功"),
 	
 	NUKNOW_ERROR(100,"未知错误");

@@ -1,0 +1,56 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thirteen.component.user.dao.UserDao" >
+  <resultMap id="BaseResultMap" type="com.thirteen.component.user.entity.UserInfo" >
+    <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="passWord" jdbcType="VARCHAR" />
+    <result column="USER_RAND" property="userRand" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_ID, USER_NAME, PASSWORD,USER_RAND
+  </sql>
+
+    <select id="userNameCheck" parameterType="com.thirteen.component.user.entity.UserInfo" resultType="java.lang.Integer">
+        SELECT count(0) FROM user_info where user_Name=#{userName}
+    </select>
+    <select id="getByName" parameterType="com.thirteen.component.user.entity.UserInfo" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/> FROM user_info where user_Name=#{userName}
+    </select>
+    <select id="get"  resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/> FROM user_info
+        <where>
+            <trim suffixOverrides="AND" >
+                <if test="userId !=null and userId!=''">
+                    user_Id =#{userId,jdbcType=VARCHAR}
+                </if>
+                <if test="userName !=null and userName!=''">
+                    user_Name =#{userName,jdbcType=VARCHAR}
+                </if>
+                <if test="userRand !=null and userRand !=''">
+                    user_Rand=#{userRand,jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </select>
+    <insert id="post" parameterType="com.thirteen.component.user.entity.UserInfo">
+        INSERT INTO user_info (user_Name,passWord,user_Rand)values(#{userName},#{passWord},#{userRand})
+    </insert>
+    <update id="updateUser" parameterType="com.thirteen.component.user.entity.UserInfo">
+        UPDATE user_info
+        <set>
+          <if test="userName != null">
+              user_name = #{userName},
+          </if>
+          <if test="passWord != null">
+              password = #{passWord},
+          </if>
+          <if test="userRand != null">
+              user_rand = #{userRand},
+          </if>
+        </set>
+        WHERE user_id = #{userId}
+    </update>
+    <delete id="delete" parameterType="com.thirteen.component.user.entity.UserInfo">
+       DELETE FROM user_info WHERE USER_ID = #{userId}
+    </delete>
+</mapper>
