@@ -60,7 +60,7 @@ public class LoggerAop {
 				logger.debug("登录请求，通过："+requestURI);
 			}else {
 				logger.debug("用户Token验证失败："+token);
-				throw new ConstException(ResponseEnum.NOT_LOGIN,"用户Token验证失败："+token);
+				throw new ConstException(ResponseEnum.NOT_LOGIN);
 			}
 		}
 	}

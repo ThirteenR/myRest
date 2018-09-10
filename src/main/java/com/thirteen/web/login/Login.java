@@ -2,6 +2,7 @@ package com.thirteen.web.login;
 
 import com.thirteen.component.login.service.LoginService;
 import com.thirteen.component.user.entity.UserInfo;
+import com.thirteen.component.user.service.UserService;
 import com.thirteen.core.response.ResponseJson;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,7 +26,6 @@ public class Login {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseJson login(HttpServletRequest request, HttpServletResponse response, UserInfo userInfo){
         ResponseJson login = loginServic.login(request, response, userInfo);
-        System.out.println(login);
         return login;
     }
     @RequestMapping(method = RequestMethod.DELETE)

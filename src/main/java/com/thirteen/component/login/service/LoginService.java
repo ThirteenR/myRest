@@ -4,7 +4,6 @@ import com.thirteen.component.user.entity.UserInfo;
 import com.thirteen.component.user.service.UserService;
 import com.thirteen.core.exception.ConstException;
 import com.thirteen.core.norm.LoginHandler;
-import com.thirteen.core.norm.TokenManager;
 import com.thirteen.core.norm.User;
 import com.thirteen.core.response.ResponseEnum;
 import com.thirteen.core.response.ResponseJson;
@@ -16,6 +15,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Author: rsq0113
@@ -25,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 @Service
 public class LoginService implements LoginHandler {
     @Resource
-    private TokenManager tokenManager;
+    private UserTokenManager tokenManager;
     @Resource
     private UserService userService;
 
@@ -37,17 +39,35 @@ public class LoginService implements LoginHandler {
         /*匹配登陆用户*/
         UserInfo userInfo = matchUser((UserInfo) u);
         if (userInfo != null) {
-         if (tokenManager.checkToken(token)) {
-            logger.debug("用户Token已存在：" + token);
-            tokenManager.deleteToken(token);
-         }
+            if (tokenManager.checkToken(token)) {
+                logger.debug("用户Token已存在：" + token);
+                throw new ConstException(ResponseEnum.IS_DOUBLE);
+            }
+            String key = hasLanded((UserInfo) u);
+            if (key != null) {
+                tokenManager.deleteToken(key);
+            }
             return ResponseJson.success(tokenManager.createToken(userInfo));
         }
-        throw new ConstException(ResponseEnum.LOGIN_ERROR,"");
+        throw new ConstException(ResponseEnum.LOGIN_ERROR);
     }
 
     @Override
     public ResponseJson logout(HttpServletRequest request, HttpServletResponse response, User u) {
+        return null;
+    }
+
+    private String hasLanded(UserInfo u) {
+        Map<String, User> tokenMap = tokenManager.getTokenMap();
+        Set<Map.Entry<String, User>> entries = tokenMap.entrySet();
+        Iterator<Map.Entry<String, User>> iterator = entries.iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, User> next = iterator.next();
+            UserInfo user = (UserInfo) next.getValue();
+            if (user.getUserName().equals(u.getUserName())) {
+                return next.getKey();
+            }
+        }
         return null;
     }
 

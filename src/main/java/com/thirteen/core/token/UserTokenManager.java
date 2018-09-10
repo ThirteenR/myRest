@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class UserTokenManager implements TokenManager {
     public static final String DEFAULT_TOKEN_NAME = "x-token";
     /*JVM管理token*/
-    private static Map<String, User> tokenMap = new ConcurrentHashMap<String, User>();
+    private static Map<String,User> tokenMap = new ConcurrentHashMap<String, User>();
     @Override
     public String createToken(User u) {
         String token = UUIDUtil.createUUID();
@@ -34,5 +34,8 @@ public class UserTokenManager implements TokenManager {
     @Override
     public void deleteToken(String token) {
         tokenMap.remove(token);
+    }
+    public Map<String,User> getTokenMap(){
+        return tokenMap;
     }
 }

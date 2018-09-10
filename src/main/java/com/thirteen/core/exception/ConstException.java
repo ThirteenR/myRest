@@ -13,10 +13,13 @@ public class ConstException extends RuntimeException {
 	private Integer status;
 
 	public ConstException(ResponseEnum re, String msg) {
-		super(msg==null || "".equals(msg)?re.getMessage():msg);
+		super(msg);
 		this.status = re.getStatus();
 	}
-
+	public ConstException(ResponseEnum re) {
+		super(re.getMessage());
+		this.status = re.getStatus();
+	}
 	public Integer getStatus() {
 		return status;
 	}
