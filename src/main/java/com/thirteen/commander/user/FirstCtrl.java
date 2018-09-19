@@ -1,14 +1,11 @@
-package com.thirteen.web.user;
+package com.thirteen.commander.user;
 
 import com.thirteen.component.user.entity.UserInfo;
 import com.thirteen.component.user.service.UserService;
-import com.thirteen.core.norm.TokenManager;
 import com.thirteen.core.response.ResponseJson;
 import com.thirteen.core.token.UserTokenManager;
-import org.apache.ibatis.annotations.Delete;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

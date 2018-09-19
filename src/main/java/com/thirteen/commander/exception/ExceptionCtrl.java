@@ -1,4 +1,4 @@
-package com.thirteen.web.exception;
+package com.thirteen.commander.exception;
 
 import com.thirteen.core.exception.ExceptionHandle;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -25,7 +25,7 @@ public class LoggerAop {
 	private static final String LOGIN_FLAG = "/login";
 	@Resource
 	private TokenManager tokenManager;
-	@Pointcut("execution(public * com.thirteen.web.*.*.*(..))")
+	@Pointcut("execution(public * com.thirteen.commander.*.*.*(..))")
     public void login() {}
 	@Before(value = "login()")
 	public void doCtrl(JoinPoint joinPoint) {

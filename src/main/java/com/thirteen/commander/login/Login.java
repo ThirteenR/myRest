@@ -1,8 +1,7 @@
-package com.thirteen.web.login;
+package com.thirteen.commander.login;
 
 import com.thirteen.component.login.service.LoginService;
 import com.thirteen.component.user.entity.UserInfo;
-import com.thirteen.component.user.service.UserService;
 import com.thirteen.core.response.ResponseJson;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
