@@ -1,9 +1,6 @@
 package com.thirteen.core.interceptor;
 
-import com.thirteen.core.exception.ConstException;
-import com.thirteen.core.norm.TokenManager;
-import com.thirteen.core.response.ResponseEnum;
-import com.thirteen.core.token.UserTokenManager;
+import com.thirteen.core.norm.JWTManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -22,7 +19,7 @@ public class UValidationInterceptor implements HandlerInterceptor {
     private Logger logger = LoggerFactory.getLogger(UValidationInterceptor.class);
     private static final String LOGIN_FLAG = "/login";
     @Resource
-    private TokenManager tokenManager;
+    private JWTManager tokenManager;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
      /*   String requestURI = request.getRequestURI();

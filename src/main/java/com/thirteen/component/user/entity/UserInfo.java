@@ -22,7 +22,7 @@ public class UserInfo implements User {
     }
 
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -42,7 +42,7 @@ public class UserInfo implements User {
         this.userRand = userRand;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 }

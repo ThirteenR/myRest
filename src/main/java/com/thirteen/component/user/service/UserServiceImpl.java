@@ -31,12 +31,11 @@ public class UserServiceImpl<T> extends BaseServiceImpl<T> implements UserServic
 
     @Override
     public Map<String, User> getLanded() {
-        return  tokenManager.getTokenMap();
+        return  null;
     }
 
     @Override
     public UserInfo getCurrent(String token) {
-        Map<String, User> tokenMap = tokenManager.getTokenMap();
-        return (UserInfo) tokenMap.get(token);
+        return null;
     }
 }

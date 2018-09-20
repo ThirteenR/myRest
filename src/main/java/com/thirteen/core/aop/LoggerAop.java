@@ -1,7 +1,7 @@
 package com.thirteen.core.aop;
 
 import com.thirteen.core.exception.ConstException;
-import com.thirteen.core.norm.TokenManager;
+import com.thirteen.core.norm.JWTManager;
 import com.thirteen.core.response.ResponseEnum;
 import com.thirteen.core.token.UserTokenManager;
 import org.aspectj.lang.JoinPoint;
@@ -24,7 +24,7 @@ public class LoggerAop {
 	private static final Logger doCtrlLogger = LoggerFactory.getLogger("doCtrl");
 	private static final String LOGIN_FLAG = "/login";
 	@Resource
-	private TokenManager tokenManager;
+	private JWTManager tokenManager;
 	@Pointcut("execution(public * com.thirteen.commander.*.*.*(..))")
     public void login() {}
 	@Before(value = "login()")
@@ -55,7 +55,7 @@ public class LoggerAop {
 	private void matchToken(HttpServletRequest request){
 		String requestURI = request.getRequestURI();
 		String token = request.getHeader(UserTokenManager.DEFAULT_TOKEN_NAME);
-		if (!tokenManager.checkToken(token)){
+		if (tokenManager.validJWT(token) == null){
 			if (requestURI.endsWith(LOGIN_FLAG)){
 				logger.debug("登录请求，通过："+requestURI);
 			}else {

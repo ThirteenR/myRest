@@ -6,4 +6,13 @@ package com.thirteen.core.norm;
  * Description:
  **/
 public interface User {
+    void setUserId(Integer userId);
+    Integer getUserId();
+    void setUserName(String userName);
+    String getUserName();
+    void setUserRand(String userRand);
+    String getUserRand();
+    void setPassWord(String passWord);
+    String getPassWord();
+
 }

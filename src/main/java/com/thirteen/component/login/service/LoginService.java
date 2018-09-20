@@ -39,15 +39,12 @@ public class LoginService implements LoginHandler {
         /*匹配登陆用户*/
         UserInfo userInfo = matchUser((UserInfo) u);
         if (userInfo != null) {
-            if (tokenManager.checkToken(token)) {
+            if (tokenManager.validJWT(token) != null) {
                 logger.debug("用户Token已存在：" + token);
                 throw new ConstException(ResponseEnum.IS_DOUBLE);
             }
             String key = hasLanded((UserInfo) u);
-            if (key != null) {
-                tokenManager.deleteToken(key);
-            }
-            return ResponseJson.success(tokenManager.createToken(userInfo));
+            return ResponseJson.success(tokenManager.createJWT(userInfo));
         }
         throw new ConstException(ResponseEnum.LOGIN_ERROR);
     }
@@ -58,16 +55,6 @@ public class LoginService implements LoginHandler {
     }
 
     private String hasLanded(UserInfo u) {
-        Map<String, User> tokenMap = tokenManager.getTokenMap();
-        Set<Map.Entry<String, User>> entries = tokenMap.entrySet();
-        Iterator<Map.Entry<String, User>> iterator = entries.iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, User> next = iterator.next();
-            UserInfo user = (UserInfo) next.getValue();
-            if (user.getUserName().equals(u.getUserName())) {
-                return next.getKey();
-            }
-        }
         return null;
     }
 
