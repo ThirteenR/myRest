@@ -44,7 +44,8 @@ public class LoginService implements LoginHandler {
                 throw new ConstException(ResponseEnum.IS_DOUBLE);
             }
             String key = hasLanded((UserInfo) u);
-            return ResponseJson.success(tokenManager.createJWT(userInfo));
+            response.addHeader(UserTokenManager.DEFAULT_TOKEN_NAME,tokenManager.createJWT(userInfo));
+            return ResponseJson.success(userInfo);
         }
         throw new ConstException(ResponseEnum.LOGIN_ERROR);
     }

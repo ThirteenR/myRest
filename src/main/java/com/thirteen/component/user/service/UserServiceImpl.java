@@ -1,14 +1,18 @@
 package com.thirteen.component.user.service;
 
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.thirteen.component.user.dao.UserDao;
 import com.thirteen.component.user.entity.UserInfo;
 import com.thirteen.core.norm.BaseServiceImpl;
 import com.thirteen.core.norm.User;
+import com.thirteen.core.token.TokenEnum;
 import com.thirteen.core.token.UserTokenManager;
 import com.thirteen.core.util.MD5Encod;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,10 +22,11 @@ import java.util.Map;
  **/
 @Service
 public class UserServiceImpl<T> extends BaseServiceImpl<T> implements UserService<T> {
-     @Resource
-     UserDao userDao;
-     @Resource
-     UserTokenManager tokenManager;
+    @Resource
+    UserDao userDao;
+    @Resource
+    UserTokenManager tokenManager;
+
     @Override
     public int post(T t) {
         UserInfo userInfo = (UserInfo) t;
@@ -31,11 +36,17 @@ public class UserServiceImpl<T> extends BaseServiceImpl<T> implements UserServic
 
     @Override
     public Map<String, User> getLanded() {
-        return  null;
+        return null;
     }
 
     @Override
     public UserInfo getCurrent(String token) {
-        return null;
+        DecodedJWT decodedJWT = tokenManager.validJWT(token);
+        Map<String, Claim> claims = decodedJWT.getClaims();
+        int userId = claims.get(TokenEnum.USER_ID.getValue()).asInt();
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId(userId);
+        List list = userDao.get(userInfo);
+        return (UserInfo) list.get(0);
     }
 }

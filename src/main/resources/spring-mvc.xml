@@ -41,6 +41,7 @@
 					 allowed-origins="http://localhost:8081"
 					 allowed-methods="POST, GET, OPTIONS, DELETE, PUT"
 					 allowed-headers="Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With,x-token"
+					 allow-credentials = "false"
 					 max-age = "-1" />
 	</mvc:cors>
 	<!-- 拦截器 -->
