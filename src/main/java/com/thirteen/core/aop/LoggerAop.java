@@ -33,7 +33,8 @@ public class LoggerAop {
 		//记录http请求
 		ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
 		HttpServletRequest request = attributes.getRequest();
-		matchToken(request);
+		/*匹配登陆信息*/
+		//matchToken(request);
 		//url
 		doCtrlLogger.info("[url]={}",request.getRequestURI());
 
