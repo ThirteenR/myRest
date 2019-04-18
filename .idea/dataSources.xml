@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="thirteen@127.0.0.1" uuid="459d35ca-b9cf-4cc1-a4e0-2910711317db">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/thirteen?useSSL=false&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;allowPublicKeyRetrieval=true</jdbc-url>
+      <driver-properties>
+        <property name="autoReconnect" value="true" />
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+        <property name="characterEncoding" value="utf8" />
+        <property name="characterSetResults" value="utf8" />
+        <property name="yearIsDateType" value="false" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="jbdc:db2://198.198.198.3:60005/db2izhqz" uuid="36be9805-1250-4de2-8f9c-e9a906e790b5">
+      <driver-ref>db2</driver-ref>
+      <jdbc-driver>com.ibm.db2.jcc.DB2Driver</jdbc-driver>
+      <jdbc-url>jbdc:db2://198.198.198.3:60005/db2izhqz</jdbc-url>
+      <driver-properties>
+        <property name="retrieveMessagesFromServerOnGetMessage" value="true" />
+        <property name="clientProgramName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+  </component>
+</project>

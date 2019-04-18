@@ -1,6 +1,7 @@
 package com.thirteen.core.util;
 
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 
 public class MD5Encod {
@@ -11,20 +12,19 @@ public class MD5Encod {
 	    */
 	   public static String getMD5(String message) {
 	       String md5str = "";
-	       try {
 	           //1 创建个提供信息摘要算法的对象，初始化为md5算法对象
-	           MessageDigest md = MessageDigest.getInstance("MD5");
-
-	           //2 将消息变成byte数组
+		   MessageDigest md = null;
+		   try {
+			   md = MessageDigest.getInstance("MD5");
+		   //2 将消息变成byte数组
 	           byte[] input = message.getBytes();
 
 	           byte[] buff = md.digest(input);
 
 	           md5str = bytesToHex(buff);
-
-	       } catch (Exception e) {
-	           e.printStackTrace();
-	       }
+		   } catch (NoSuchAlgorithmException e) {
+			   e.printStackTrace();
+		   }
 	       return md5str;
 	   }
 

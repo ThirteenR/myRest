@@ -4,14 +4,17 @@ import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.thirteen.component.user.dao.UserDao;
 import com.thirteen.component.user.entity.UserInfo;
+import com.thirteen.core.exception.ConstException;
 import com.thirteen.core.norm.BaseServiceImpl;
 import com.thirteen.core.norm.User;
+import com.thirteen.core.response.ResponseEnum;
 import com.thirteen.core.token.TokenEnum;
 import com.thirteen.core.token.UserTokenManager;
 import com.thirteen.core.util.MD5Encod;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Map;
 

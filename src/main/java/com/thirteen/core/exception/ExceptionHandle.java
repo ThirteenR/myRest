@@ -16,7 +16,6 @@ public abstract class ExceptionHandle {
 	 */
 	    @ExceptionHandler(value= Exception.class)
         public ResponseJson handle(Exception exception){
-	    	exception.printStackTrace();
 	       if(exception instanceof ConstException)
 			return ResponseJson.error(((ConstException) exception).getStatus(),exception.getMessage());
 			return ResponseJson.error(500,exception.getMessage());
